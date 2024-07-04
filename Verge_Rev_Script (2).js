@@ -15,8 +15,11 @@ const ruleProviderCommon = {
 // 策略组通用配置
 const groupBaseOption = {
   "interval": 300,
-  "url": "http://latency-test.skk.moe/endpoint",
+  "timeout": 3000,
+  "url": "https://www.google.com/generate_204",
+  "lazy": true,
   "max-failed-times": 3,
+  "hidden": false
 };
 
 // 程序入口
