@@ -202,21 +202,21 @@ function main(config) {
       "name": "国外网站",
       "type": "select",
       "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
-      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png"
     },
     {
       ...groupBaseOption,
       "name": "国际媒体",
       "type": "select",
       "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
-      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png"
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png"
     },
     {
       ...groupBaseOption,
       "name": "苹果服务",
       "type": "select",
       "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
-      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png"
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png"
     },
     {
       ...groupBaseOption,
