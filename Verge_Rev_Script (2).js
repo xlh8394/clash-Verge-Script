@@ -337,11 +337,17 @@ function main(config) {
       "url": "https://github.com/Repcz/Tool/raw/X/Clash/Rules/Epic.list",
       "path": "./rule-providers/Epic.list"
     },
-    "openai": {
+    "OpenAI": {
     ...ruleProviderCommon,
     "behavior": "classical",
-    "url": "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml",
-    "path": "./ruleset/blackmatrix7/openai.yaml"
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list",
+    "path": "./ruleset/blackmatrix7/OpenAI.list"
+    },
+    "Copilot": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list",
+    "path": "./ruleset/blackmatrix7/Copilot.list"
     },
     "Emby": {
       ...ruleProviderCommon,
@@ -421,9 +427,11 @@ function main(config) {
   config["rules"] = [
     // 自定义规则
     "DOMAIN-SUFFIX,gemini.google.com,ChatGPT",
+    "DOMAIN-SUFFIX,sexbjcam.com,ChatGPT",
     // 其他规则
     "RULE-SET,AD,广告拦截",
-    "RULE-SET,openai,ChatGPT",
+    "RULE-SET,OpenAI,ChatGPT",
+    "RULE-SET,Copilot,ChatGPT",
     "RULE-SET,Apple,苹果服务",
     "RULE-SET,YouTube,谷歌服务",
     "RULE-SET,Google,谷歌服务",
