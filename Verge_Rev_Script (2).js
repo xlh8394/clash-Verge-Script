@@ -172,7 +172,7 @@ function main(config) {
       "type": "select",
       "proxies": ["延迟选优", "故障转移", "DIRECT"],
       "include-all": true,
-      "icon": "https://github.com/clash-verge-rev/clash-verge-rev/raw/main/src-tauri/icons/icon.png"
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Clubhouse.png"
     },
     {
       ...groupBaseOption,
