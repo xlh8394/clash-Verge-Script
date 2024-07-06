@@ -170,7 +170,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "手动切换",
       "type": "select",
-      "proxies": ["延迟选优", "故障转移", "DIRECT"],
+      "proxies": ["延迟选优", "DIRECT"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Clubhouse.png"
     },
@@ -180,70 +180,55 @@ function main(config) {
       "type": "url-test",
       "tolerance": 100,
       "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Speedtest.png"
-    },
-    {
-      ...groupBaseOption,
-      "name": "故障转移",
-      "type": "fallback",
-      "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png"
-    },
-    {
-      ...groupBaseOption,
-      "name": "负载均衡(轮询)",
-      "type": "load-balance",
-      "strategy": "round-robin",
-      "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png"
     },
     {
       ...groupBaseOption,
       "name": "国外网站",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
+      "proxies": ["手动切换", "延迟选优", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png"
     },
     {
       ...groupBaseOption,
       "name": "国际媒体",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
+      "proxies": ["手动切换", "延迟选优", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png"
     },
     {
       ...groupBaseOption,
       "name": "苹果服务",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
+      "proxies": ["手动切换", "延迟选优", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png"
     },
     {
       ...groupBaseOption,
       "name": "微软服务",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
+      "proxies": ["手动切换", "延迟选优", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Windows.png"
     },
     {
       ...groupBaseOption,
       "name": "谷歌服务",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
+      "proxies": ["手动切换", "延迟选优", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png"
     },
     {
       ...groupBaseOption,
       "name": "电报消息",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
+      "proxies": ["手动切换", "延迟选优", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png"
     },
     {
       ...groupBaseOption,
       "name": "推特消息",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
+      "proxies": ["手动切换", "延迟选优", "DIRECT"],
       "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC+klEQVR4nO2ZSWhUQRCGP424K24J7oiCOyoeBAUVPAQEEQlxuehBD4ogBD3pyZjcNOjJmwt6EEXwIgriRUGiYkxEQVDcUC+iMZt7kpaCP9CMSd6bl2ReT5wfipmp6aqpf17339XvQQEFFNAXlADVQD3QBrgcWxvwGKhSLYmwFWhJoXjXg1kt5UlIdAZQvMuwzmzIlAR2JVyGNQPFcYhUB1Csi7BjcYg0BFCoizATgEi0BlCoizCb+pFweWKR+K+IVETkOJdFQV+A+Yo7kGsiP4FlveQYC7yIkec3sEExG4E/aUytZ8BIYAhww/NvV541QHvE5rZLY5cATWmukeOKmQ58lu8rMFv+qhh7wTTgXVprxMk6vKmxxfPfAYYCw4D73cRd0ZUcBTxIQML1NxGzD8AkxZ71/Aflm5exNz0ERovotYQk3EAQMbuq2DHeIjdBWC7/PvneeO14TR9IuIEiYrZT8as99XkqQTBcABbp/d4+knADScRUZ45yHPX8JzPyl2Ypsy7XRMzuAkVa5LWezFrxhvEJZNalQcTssPLM9c41H4HJ8p/OFyJ/gFXKtcfzm0IhxXqeD0ScCrWCDZc9/275VgK/8oHIW09mp2hqOe0ntq8YjoROpBlYqlwT9Vrq3cyolRgUSRyCJNIObFKedcB7YKo+n/LGmTwbZgGNIRLZrxwLvQJvqq8aATzxBME2TtQBB0WkRvEmsy8zvrOdvKtd/yHfK2Cc/JdCIXJdc97akXvdfP8NWKD8hzz/GfkmJGjlI5EtiTo1izZ9LvYy7hEwXF3vbc+/zVtTHWkRMVmdGeMQ1WU2xjDDO4g1atEbTqRBxPaEFYrZEfNesf3j6xVT5vlveYLQkEsiJrObNX6tzh5x/4DXah57wmLge66I2G2brsbwU4J1dT6ihopcr5E0LRKDhkhLAEW6GP1cJOoDKNT1x2OFOPtB2lY5GB69NemMEwvlAT8MLYtLwifTHNiVKCMhinWzuS6lR3Kt+u3KbKZTAQUUwD/4C68XAvRNax0sAAAAAElFTkSuQmCC"
     },
      {
@@ -260,7 +245,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "游戏平台",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
+      "proxies": ["手动切换", "延迟选优", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png"
     },    
     {
@@ -268,7 +253,7 @@ function main(config) {
       "name": "Emby",
       "type": "select",
       "include-all": true,
-      "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
+      "proxies": ["手动切换", "延迟选优", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Emby.png"
     },
     {
@@ -282,7 +267,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "兜底分流",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "故障转移", "负载均衡(轮询)", "DIRECT"],
+      "proxies": ["手动切换", "延迟选优", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png"
     }
   ];
