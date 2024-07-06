@@ -432,7 +432,7 @@ function main(config) {
     "RULE-SET,PrimeVideo,国际媒体",
     "RULE-SET,HBO,国际媒体",
     "GEOSITE,onedrive,微软服务",
-    "GEOSITE,github,微软服务",
+    "GEOSITE,github,国际媒体",
     "GEOSITE,microsoft,微软服务",
     "GEOSITE,gfw,国外网站",
     "GEOSITE,cn,DIRECT",
