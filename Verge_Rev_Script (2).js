@@ -411,6 +411,7 @@ function main(config) {
   // 覆盖规则
   config["rules"] = [
     // 自定义规则
+    "DOMAIN-SUFFIX,gwdang.com,DIRECT",
     "DOMAIN-SUFFIX,gemini.google.com,ChatGPT",
     "DOMAIN-SUFFIX,sexbjcam.com,ChatGPT",
     // 其他规则
