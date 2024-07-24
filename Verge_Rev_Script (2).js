@@ -412,8 +412,10 @@ function main(config) {
   config["rules"] = [
     // 自定义规则
     "DOMAIN-SUFFIX,misakaf.org,国际媒体",
+    "DOMAIN-SUFFIX,jd.com,DIRECT",
     "DOMAIN-SUFFIX,gwdang.com,DIRECT",
     "DOMAIN-SUFFIX,iqiyi.com,DIRECT",
+    "DOMAIN-KEYWORD,carryz,DIRECT",
     "DOMAIN-SUFFIX,gemini.google.com,ChatGPT",
     "DOMAIN-SUFFIX,sexbjcam.com,ChatGPT",
     // 其他规则
