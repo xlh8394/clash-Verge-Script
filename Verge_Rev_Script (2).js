@@ -1,20 +1,213 @@
-// 参考 Verge 示例 Script 配置
-//
-// Clash Verg Rev Version ≥ 1.7.2
-//
-// 最后更新时间: 2024-07-04 18:45
-
-
+// 国内DNS服务器
+const domesticNameservers = [
+  "https://223.5.5.5/dns-query", // 阿里DoH
+  "https://doh.pub/dns-query" // 腾讯DoH
+];
+// 国外DNS服务器
+const foreignNameservers = [
+  "https://208.67.222.222/dns-query", // OpenDNS
+  "https://77.88.8.8/dns-query", //YandexDNS
+  "https://1.1.1.1/dns-query", // CloudflareDNS
+  "https://8.8.4.4/dns-query", // GoogleDNS  
+];
+// DNS配置
+const dnsConfig = {
+  "enable": true,
+  "listen": "0.0.0.0:1053",
+  "ipv6": true,
+  "prefer-h3": false,
+  "respect-rules": true,
+  "use-system-hosts": false,
+  "cache-algorithm": "arc",
+  "enhanced-mode": "fake-ip",
+  "fake-ip-range": "198.18.0.1/16",
+  "fake-ip-filter": [
+    // 本地主机/设备
+    "+.lan",
+    "+.local",
+    // // Windows网络出现小地球图标
+    "+.msftconnecttest.com",
+    "+.msftncsi.com",
+    // QQ快速登录检测失败
+    "localhost.ptlogin2.qq.com",
+    "localhost.sec.qq.com",
+    // 微信快速登录检测失败
+    "localhost.work.weixin.qq.com"
+  ],
+  "default-nameserver": ["223.5.5.5","1.2.4.8"], //可修改成自己ISP的DNS
+  "nameserver": [...foreignNameservers],
+  "proxy-server-nameserver":[...domesticNameservers],
+  "nameserver-policy": {
+    "geosite:private,cn": domesticNameservers
+  }
+};
 // 规则集通用配置
 const ruleProviderCommon = {
   "type": "http",
-  "format": "text",
+  "format": "yaml",
   "interval": 86400
 };
-
-// 策略组通用配置
+// 规则集配置
+const ruleProviders = {
+  "reject": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt",
+    "path": "./ruleset/loyalsoldier/reject.yaml"
+  },
+  "icloud": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt",
+    "path": "./ruleset/loyalsoldier/icloud.yaml"
+  },
+  "apple": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt",
+    "path": "./ruleset/loyalsoldier/apple.yaml"
+  },
+  "google": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt",
+    "path": "./ruleset/loyalsoldier/google.yaml"
+  },
+  "proxy": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt",
+    "path": "./ruleset/loyalsoldier/proxy.yaml"
+  },
+  "direct": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt",
+    "path": "./ruleset/loyalsoldier/direct.yaml"
+  },
+  "private": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt",
+    "path": "./ruleset/loyalsoldier/private.yaml"
+  },
+  "gfw": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt",
+    "path": "./ruleset/loyalsoldier/gfw.yaml"
+  },
+  "tld-not-cn": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt",
+    "path": "./ruleset/loyalsoldier/tld-not-cn.yaml"
+  },
+  "telegramcidr": {
+    ...ruleProviderCommon,
+    "behavior": "ipcidr",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt",
+    "path": "./ruleset/loyalsoldier/telegramcidr.yaml"
+  },
+  "cncidr": {
+    ...ruleProviderCommon,
+    "behavior": "ipcidr",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt",
+    "path": "./ruleset/loyalsoldier/cncidr.yaml"
+  },
+  "lancidr": {
+    ...ruleProviderCommon,
+    "behavior": "ipcidr",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt",
+    "path": "./ruleset/loyalsoldier/lancidr.yaml"
+  },
+  "applications": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt",
+    "path": "./ruleset/loyalsoldier/applications.yaml"
+  },
+  "openai": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/openai.yaml",
+    "path": "./ruleset/MetaCubeX/openai.yaml"
+  },
+  "pikpak": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/pikpak.yaml",
+    "path": "./ruleset/MetaCubeX/pikpak.yaml"
+  },
+  "anthropic": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/anthropic.yaml",
+    "path": "./ruleset/MetaCubeX/anthropic.yaml"
+  },
+  "google-gemini": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/google-gemini.yaml",
+    "path": "./ruleset/MetaCubeX/google-gemini.yaml"
+  },
+  "xai": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/xai.yaml",
+    "path": "./ruleset/MetaCubeX/xai.yaml"
+  },
+  "perplexity": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/perplexity.yaml",
+    "path": "./ruleset/MetaCubeX/perplexity.yaml"
+  },
+  "microsoft": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/microsoft.yaml",
+    "path": "./ruleset/MetaCubeX/microsoft.yaml"
+  },
+};
+// 规则
+const rules = [
+  // 自定义规则
+  "DOMAIN-SUFFIX,googleapis.cn,⚙️ 节点选择", // Google服务
+  "DOMAIN-SUFFIX,gstatic.com,⚙️ 节点选择", // Google静态资源
+  "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,⚙️ 节点选择", // Google Play下载服务
+  "DOMAIN-SUFFIX,github.io,⚙️ 节点选择", // Github Pages
+  "DOMAIN,v2rayse.com,⚙️ 节点选择", // V2rayse节点工具
+  // MetaCubeX 规则集
+  "RULE-SET,openai,💸 ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,pikpak,🅿️ PikPak",
+  "RULE-SET,anthropic,💵 Claude",
+  "RULE-SET,google-gemini,💸 ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,xai,💸 ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,perplexity,💸 ChatGPT-Gemini-XAI-Perplexity",
+  // Loyalsoldier 规则集
+  "RULE-SET,applications,🔗 全局直连",
+  "RULE-SET,private,🔗 全局直连",
+  "RULE-SET,reject,🥰 广告过滤",
+  "RULE-SET,microsoft,Ⓜ️ 微软服务",
+  "RULE-SET,icloud,🍎 苹果服务",
+  "RULE-SET,apple,🍎 苹果服务",
+  "RULE-SET,google,📢 谷歌服务",
+  "RULE-SET,proxy,⚙️ 节点选择",
+  "RULE-SET,gfw,⚙️ 节点选择",
+  "RULE-SET,tld-not-cn,⚙️ 节点选择",
+  "RULE-SET,direct,🔗 全局直连",
+  "RULE-SET,lancidr,🔗 全局直连,no-resolve",
+  "RULE-SET,cncidr,🔗 全局直连,no-resolve",
+  "RULE-SET,telegramcidr,📲 电报消息,no-resolve",
+  // 其他规则
+  "GEOIP,LAN,🔗 全局直连,no-resolve",
+  "GEOIP,CN,🔗 全局直连,no-resolve",
+  "MATCH,🐟 漏网之鱼"
+];
+// 代理组通用配置
 const groupBaseOption = {
-  "interval": 300,
+  "interval": 0,
   "timeout": 3000,
   "url": "https://www.google.com/generate_204",
   "lazy": true,
@@ -31,421 +224,156 @@ function main(config) {
     throw new Error("配置文件中未找到任何代理");
   }
 
-  // 覆盖通用配置
-  config["mixed-port"] = "7893";
-  config["tcp-concurrent"] = true;
-  config["allow-lan"] = true;
-  config["ipv6"] = false;
-  config["mode"] = "rule";
-  config["log-level"] = "info";
-  config["find-process-mode"] = "strict";
-  config["global-client-fingerprint"] = "chrome";
+  // 覆盖原配置中DNS配置
+  config["dns"] = dnsConfig;
 
-  // 覆盖 dns 配置
-  config["dns"] = {
-    "enable": true,
-    "listen": "0.0.0.0:1053",
-    "ipv6": true,
-    "enhanced-mode": "fake-ip",
-    "fake-ip-range": "198.18.0.1/16",
-    "fake-ip-filter":[
-      "*.lan",
-      "*.direct",
-      "cable.auth.com",
-      "*.msftconnecttest.com",
-      "*.msftncsi.com",
-      "network-test.debian.org",
-      "detectportal.firefox.com",
-      "resolver1.opendns.com",
-      "*.srv.nintendo.net",
-      "*.stun.playstation.net",
-      "xbox.*.microsoft.com",
-      "*.xboxlive.com",
-      "stun.*",
-      "global.turn.twilio.com",
-      "global.stun.twilio.com",
-      "app.yinxiang.com",
-      "injections.adguard.org",
-      "local.adguard.org",
-      "cable.auth.com",
-      "localhost.*.qq.com",
-      "localhost.*.weixin.qq.com",
-      "*.logon.battlenet.com.cn",
-      "*.logon.battle.net",
-      "*.blzstatic.cn",
-      "music.163.com",
-      "*.music.163.com",
-      "*.126.net",
-      "musicapi.taihe.com",
-      "music.taihe.com",
-      "songsearch.kugou.com",
-      "trackercdn.kugou.com",
-      "*.kuwo.cn",
-      "api-jooxtt.sanook.com",
-      "api.joox.com",
-      "joox.com",
-      "y.qq.com",
-      "*.y.qq.com",
-      "streamoc.music.tc.qq.com",
-      "mobileoc.music.tc.qq.com",
-      "isure.stream.qqmusic.qq.com",
-      "dl.stream.qqmusic.qq.com",
-      "aqqmusic.tc.qq.com",
-      "amobile.music.tc.qq.com",
-      "*.xiami.com",
-      "*.music.migu.cn",
-      "music.migu.cn",
-      "proxy.golang.org",
-      "*.mcdn.bilivideo.cn",
-      "*.cmpassport.com",
-      "id6.me",
-      "open.e.189.cn",
-      "mdn.open.wo.cn",
-      "opencloud.wostore.cn",
-      "auth.wosms.cn",
-      "*.jegotrip.com.cn",
-      "*.icitymobile.mobi",
-      "*.pingan.com.cn",
-      "*.cmbchina.com",
-      "*.10099.com.cn",
-      "pool.ntp.org",
-      "*.pool.ntp.org",
-      "ntp.*.com",
-      "time.*.com",
-      "ntp?.*.com",
-      "time?.*.com",
-      "time.*.gov",
-      "time.*.edu.cn",
-      "*.ntp.org.cn",
-      "PDC._msDCS.*.*",
-      "DC._msDCS.*.*",
-      "GC._msDCS.*.*"
-    ],
-    "default-nameserver": ["223.5.5.5", "119.29.29.29"],
-    "nameserver": ["223.5.5.5", "119.29.29.29"],
-    "nameserver-policy":{
-      "geosite:cn": "system",
-      "geosite:gfw,geolocation-!cn": ["quic://223.5.5.5", "quic://223.6.6.6", "https://1.12.12.12/dns-query", "https://120.53.53.53/dns-query"]
-    }
-  };
-
-  // 覆盖 geodata 配置
-  config["geodata-mode"] = true;
-  config["geox-url"] = {
-    "geoip": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat",
-    "geosite": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat",
-    "mmdb": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
-  };
-
-  // 覆盖 sniffer 配置
-  config["sniffer"] = {
-    "enable": true,
-    "parse-pure-ip": true,
-    "sniff": {
-      "TLS": {
-        "ports": ["443", "8443"]
-      },
-      "HTTP": {
-        "ports": ["80", "8080-8880"],
-        "override-destination": true
-      },
-      "QUIC": {
-        "ports": ["443", "8443"]
-      }
-    }
-  };
-
-  // 覆盖 tun 配置
-  config["tun"] = {
-    "enable": true,
-    "stack": "mixed",
-    "dns-hijack": ["any:53"],
-    "auto-route": true,
-    "auto-detect-interface": true  
-  };
-
-  // 覆盖策略组
+  // 覆盖原配置中的代理组
   config["proxy-groups"] = [
     {
       ...groupBaseOption,
-      "name": "手动切换",
+      "name": "⚙️ 节点选择",
       "type": "select",
-      "proxies": ["延迟选优", "DIRECT"],
+      "proxies": ["♻️ 延迟选优", "🚑 故障转移"],
       "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Clubhouse.png"
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
     },
     {
       ...groupBaseOption,
-      "name": "延迟选优",
+      "name": "♻️ 延迟选优",
       "type": "url-test",
-      "tolerance": 100,
+      "tolerance": 50,
       "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png"
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
     },
     {
       ...groupBaseOption,
-      "name": "国外网站",
-      "type": "select",
-      "proxies": ["手动切换", "延迟选优", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png"
+      "name": "🚑 故障转移",
+      "type": "fallback",
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/ambulance.svg"
     },
     {
       ...groupBaseOption,
-      "name": "国际媒体",
+      "name": "🌍 国外媒体",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png"
+      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/youtube.svg"
     },
     {
       ...groupBaseOption,
-      "name": "苹果服务",
-      "type": "select",
-      "proxies": ["手动切换", "延迟选优", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png"
-    },
-    {
-      ...groupBaseOption,
-      "name": "微软服务",
-      "type": "select",
-      "proxies": ["手动切换", "延迟选优", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Windows.png"
-    },
-    {
-      ...groupBaseOption,
-      "name": "谷歌服务",
-      "type": "select",
-      "proxies": ["手动切换", "延迟选优", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png"
-    },
-    {
-      ...groupBaseOption,
-      "name": "电报消息",
-      "type": "select",
-      "proxies": ["手动切换", "延迟选优", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png"
-    },
-    {
-      ...groupBaseOption,
-      "name": "推特消息",
-      "type": "select",
-      "proxies": ["手动切换", "延迟选优", "DIRECT"],
-      "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC+klEQVR4nO2ZSWhUQRCGP424K24J7oiCOyoeBAUVPAQEEQlxuehBD4ogBD3pyZjcNOjJmwt6EEXwIgriRUGiYkxEQVDcUC+iMZt7kpaCP9CMSd6bl2ReT5wfipmp6aqpf17339XvQQEFFNAXlADVQD3QBrgcWxvwGKhSLYmwFWhJoXjXg1kt5UlIdAZQvMuwzmzIlAR2JVyGNQPFcYhUB1Csi7BjcYg0BFCoizATgEi0BlCoizCb+pFweWKR+K+IVETkOJdFQV+A+Yo7kGsiP4FlveQYC7yIkec3sEExG4E/aUytZ8BIYAhww/NvV541QHvE5rZLY5cATWmukeOKmQ58lu8rMFv+qhh7wTTgXVprxMk6vKmxxfPfAYYCw4D73cRd0ZUcBTxIQML1NxGzD8AkxZ71/Aflm5exNz0ERovotYQk3EAQMbuq2DHeIjdBWC7/PvneeO14TR9IuIEiYrZT8as99XkqQTBcABbp/d4+knADScRUZ45yHPX8JzPyl2Ypsy7XRMzuAkVa5LWezFrxhvEJZNalQcTssPLM9c41H4HJ8p/OFyJ/gFXKtcfzm0IhxXqeD0ScCrWCDZc9/275VgK/8oHIW09mp2hqOe0ntq8YjoROpBlYqlwT9Vrq3cyolRgUSRyCJNIObFKedcB7YKo+n/LGmTwbZgGNIRLZrxwLvQJvqq8aATzxBME2TtQBB0WkRvEmsy8zvrOdvKtd/yHfK2Cc/JdCIXJdc97akXvdfP8NWKD8hzz/GfkmJGjlI5EtiTo1izZ9LvYy7hEwXF3vbc+/zVtTHWkRMVmdGeMQ1WU2xjDDO4g1atEbTqRBxPaEFYrZEfNesf3j6xVT5vlveYLQkEsiJrObNX6tzh5x/4DXah57wmLge66I2G2brsbwU4J1dT6ihopcr5E0LRKDhkhLAEW6GP1cJOoDKNT1x2OFOPtB2lY5GB69NemMEwvlAT8MLYtLwifTHNiVKCMhinWzuS6lR3Kt+u3KbKZTAQUUwD/4C68XAvRNax0sAAAAAElFTkSuQmCC"
-    },
-     {
-      ...groupBaseOption,
-      "url": "https://chatgpt.com",
-      "expected-status": "200",
-      "name": "ChatGPT",
+      // "url": "https://chatgpt.com",
+      // "expected-status": "200",
+      "name": "💸 ChatGPT-Gemini-XAI-Perplexity",
       "type": "select",
       "include-all": true,
-      "filter": "AD|🇦🇩|AE|🇦🇪|AF|🇦🇫|AG|🇦🇬|AL|🇦🇱|AM|🇦🇲|AO|🇦🇴|AR|🇦🇷|AT|🇦🇹|AU|🇦🇺|AZ|🇦🇿|BA|🇧🇦|BB|🇧🇧|BD|🇧🇩|BE|🇧🇪|BF|🇧🇫|BG|🇧🇬|BH|🇧🇭|BI|🇧🇮|BJ|🇧🇯|BN|🇧🇳|BO|🇧🇴|BR|🇧🇷|BS|🇧🇸|BT|🇧🇹|BW|🇧🇼|BZ|🇧🇿|CA|🇨🇦|CD|🇨🇩|CF|🇨🇫|CG|🇨🇬|CH|🇨🇭|CI|🇨🇮|CL|🇨🇱|CM|🇨🇲|CO|🇨🇴|CR|🇨🇷|CV|🇨🇻|CY|🇨🇾|CZ|🇨🇿|DE|🇩🇪|DJ|🇩🇯|DK|🇩🇰|DM|🇩🇲|DO|🇩🇴|DZ|🇩🇿|EC|🇪🇨|EE|🇪🇪|EG|🇪🇬|ER|🇪🇷|ES|🇪🇸|ET|🇪🇹|FI|🇫🇮|FJ|🇫🇯|FM|🇫🇲|FR|🇫🇷|GA|🇬🇦|GB|🇬🇧|GD|🇬🇩|GE|🇬🇪|GH|🇬🇭|GM|🇬🇲|GN|🇬🇳|GQ|🇬🇶|GR|🇬🇷|GT|🇬🇹|GW|🇬🇼|GY|🇬🇾|HN|🇭🇳|HR|🇭🇷|HT|🇭🇹|HU|🇭🇺|ID|🇮🇩|IE|🇮🇪|IL|🇮🇱|IN|🇮🇳|IQ|🇮🇶|IS|🇮🇸|IT|🇮🇹|JM|🇯🇲|JO|🇯🇴|JP|🇯🇵|KE|🇰🇪|KG|🇰🇬|KH|🇰🇭|KI|🇰🇮|KM|🇰🇲|KN|🇰🇳|KR|🇰🇷|KW|🇰🇼|KZ|🇰🇿|LA|🇱🇦|LB|🇱🇧|LC|🇱🇨|LI|🇱🇮|LK|🇱🇰|LR|🇱🇷|LS|🇱🇸|LT|🇱🇹|LU|🇱🇺|LV|🇱🇻|LY|🇱🇾|MA|🇲🇦|MC|🇲🇨|MD|🇲🇩|ME|🇲🇪|MG|🇲🇬|MH|🇲🇭|MK|🇲🇰|ML|🇲🇱|MM|🇲🇲|MN|🇲🇳|MR|🇲🇷|MT|🇲🇹|MU|🇲🇺|MV|🇲🇻|MW|🇲🇼|MX|🇲🇽|MY|🇲🇾|MZ|🇲🇿|NA|🇳🇦|NE|🇳🇪|NG|🇳🇬|NI|🇳🇮|NL|🇳🇱|NO|🇳🇴|NP|🇳🇵|NR|🇳🇷|NZ|🇳🇿|OM|🇴🇲|PA|🇵🇦|PE|🇵🇪|PG|🇵🇬|PH|🇵🇭|PK|🇵🇰|PL|🇵🇱|PS|🇵🇸|PT|🇵🇹|PW|🇵🇼|PY|🇵🇾|QA|🇶🇦|RO|🇷🇴|RS|🇷🇸|RW|🇷🇼|SA|🇸🇦|SB|🇸🇧|SC|🇸🇨|SD|🇸🇩|SE|🇸🇪|SG|🇸🇬|SI|🇸🇮|SK|🇸🇰|SL|🇸🇱|SM|🇸🇲|SN|🇸🇳|SO|🇸🇴|SR|🇸🇷|SS|🇸🇸|ST|🇸🇹|SV|🇸🇻|SZ|🇸🇿|TD|🇹🇩|TG|🇹🇬|TH|🇹🇭|TJ|🇹🇯|TL|🇹🇱|TM|🇹🇲|TN|🇹🇳|TO|🇹🇴|TR|🇹🇷|TT|🇹🇹|TV|🇹🇻|TW|🇹🇼|TZ|🇹🇿|UA|🇺🇦|UG|🇺🇬|US|🇺🇸|UY|🇺🇾|UZ|🇺🇿|VA|🇻🇦|VC|🇻🇨|VN|🇻🇳|VU|🇻🇺|WS|🇼🇸|YE|🇾🇪|ZA|🇿🇦|ZM|🇿🇲|ZW|🇿🇼",
-      "icon": "https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png"
+      "exclude-filter": "(?i)港|hk|hongkong|hong kong|俄|ru|russia|澳|macao",
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg"
     },
     {
       ...groupBaseOption,
-      "name": "游戏平台",
+      "name": "💵 Claude",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png"
-    },    
-    {
-      ...groupBaseOption,
-      "name": "Emby",
-      "type": "select",
+      "proxies": ["⚙️ 节点选择", "🔗 全局直连", "♻️ 延迟选优", "🚑 故障转移"],
       "include-all": true,
-      "proxies": ["手动切换", "延迟选优", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Emby.png"
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/claude.svg"
     },
     {
       ...groupBaseOption,
-      "name": "广告拦截",
+      "name": "🅿️ PikPak",
+      "type": "select",
+      "proxies": ["⚙️ 节点选择", "🔗 全局直连", "♻️ 延迟选优", "🚑 故障转移"],
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "📲 电报消息",
+      "type": "select",
+      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "📢 谷歌服务",
+      "type": "select",
+      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "🍎 苹果服务",
+      "type": "select",
+      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "Ⓜ️ 微软服务",
+      "type": "select",
+      "proxies": ["⚙️ 节点选择", "🔗 全局直连", "♻️ 延迟选优", "🚑 故障转移"],
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/microsoft.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "🥰 广告过滤",
       "type": "select",
       "proxies": ["REJECT", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Advertising.png"
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/bug.svg"
     },
     {
       ...groupBaseOption,
-      "name": "兜底分流",
+      "name": "🔗 全局直连",
       "type": "select",
-      "proxies": ["手动切换", "延迟选优", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png"
+      "proxies": ["DIRECT", "⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移"],
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "❌ 全局拦截",
+      "type": "select",
+      "proxies": ["REJECT", "DIRECT"],
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/block.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "🐬 自定义直连",
+      "type": "select",
+      "include-all": true,
+      "proxies": ["🔗 全局直连", "⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移"],
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/unknown.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "🐳 自定义代理",
+      "type": "select",
+      "include-all": true,
+      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/openwrt.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "🐟 漏网之鱼",
+      "type": "select",
+      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg"
     }
   ];
 
-  // 覆盖规则集
-  config["rule-providers"] = {
-    "AdvertisingLite": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite.list",
-      "path": "./ruleset/blackmatrix7/AdvertisingLite.list"
-    },
-    "Apple": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.list",
-      "path": "./ruleset/blackmatrix7/Apple.list"
-    },
-    "Google": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.list",
-      "path": "./ruleset/blackmatrix7/Google.list"
-    },
-    "YouTube": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.list",
-      "path": "./ruleset/blackmatrix7/YouTube.list"
-    },
-    "Telegram": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list",
-      "path": "./ruleset/blackmatrix7/Telegram.list"
-    },
-    "Twitter": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.list",
-      "path": "./ruleset/blackmatrix7/Twitter.list"
-    },
-    "Steam": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.list",
-      "path": "./ruleset/blackmatrix7/Steam.list"
-    },
-    "Epic": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list",
-      "path": "./ruleset/blackmatrix7/Epic.list"
-    },
-    "OpenAI": {
-    ...ruleProviderCommon,
-    "behavior": "classical",
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list",
-    "path": "./ruleset/blackmatrix7/OpenAI.list"
-    },
-    "Copilot": {
-    ...ruleProviderCommon,
-    "behavior": "classical",
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list",
-    "path": "./ruleset/blackmatrix7/Copilot.list"
-    },
-    "Emby": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/xlh8394/Emby/main/Emby.yaml",
-      "path": "./ruleset/xlh8394/Emby.yaml"
-    },
-    "Spotify": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.list",
-      "path": "./ruleset/blackmatrix7/Spotify.list"
-    },
-    "Bahamut": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bahamut/Bahamut.list",
-      "path": "./ruleset/blackmatrix7/Bahamut.list"
-    },
-    "Netflix": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.list",
-      "path": "./ruleset/blackmatrix7/Netflix.list"
-    },
-    "Disney": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.list",
-      "path": "./ruleset/blackmatrix7/Disney.list"
-    },
-    "PrimeVideo": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrimeVideo/PrimeVideo.list",
-      "path": "./ruleset/blackmatrix7/PrimeVideo.list"
-    },
-    "HBO": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HBO/HBO.list",
-      "path": "./ruleset/blackmatrix7/HBO.list"
-    },
-    "OneDrive": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OneDrive/OneDrive.list",
-      "path": "./ruleset/blackmatrix7/OneDrive.list"
-    },
-    "Github": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.list",
-      "path": "./ruleset/blackmatrix7/Github.list"
-    },
-    "Microsoft": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.list",
-      "path": "./ruleset/blackmatrix7/Microsoft.list"
-    },
-    "Lan": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.list",
-      "path": "./ruleset/blackmatrix7/Lan.list"
-    },
-    "ProxyGFW": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyGFW.list",
-      "path": "./rule-providers/ProxyGFW.list"
-    }
-  };
+  // 覆盖原配置中的规则
+  config["rule-providers"] = ruleProviders;
+  config["rules"] = rules;
+  config["proxies"].forEach(proxy => {
+    // 为每个节点设置 udp = true
+    proxy.udp = true
 
-  // 覆盖规则
-  config["rules"] = [
-    // 自定义规则
-    "DOMAIN-SUFFIX,misakaf.org,国际媒体",
-    "DOMAIN-SUFFIX,jd.com,DIRECT",
-    "DOMAIN-SUFFIX,gwdang.com,DIRECT",
-    "DOMAIN-SUFFIX,iqiyi.com,DIRECT",
-    "DOMAIN-KEYWORD,carryz,DIRECT",
-    "DOMAIN-SUFFIX,gemini.google.com,ChatGPT",
-    "DOMAIN-SUFFIX,sexbjcam.com,ChatGPT",
-    // 其他规则
-    "RULE-SET,AdvertisingLite,广告拦截",
-    "RULE-SET,OpenAI,ChatGPT",
-    "RULE-SET,Copilot,ChatGPT",
-    "RULE-SET,Apple,苹果服务",
-    "RULE-SET,YouTube,谷歌服务",
-    "RULE-SET,Google,谷歌服务",
-    "RULE-SET,Telegram,电报消息",
-    "RULE-SET,Twitter,推特消息",
-    "RULE-SET,Steam,游戏平台",
-    "RULE-SET,Epic,游戏平台",
-    "RULE-SET,Emby,Emby",
-    "RULE-SET,Spotify,国际媒体",
-    "RULE-SET,Bahamut,国际媒体",
-    "RULE-SET,Netflix,国际媒体",
-    "RULE-SET,Disney,国际媒体",
-    "RULE-SET,PrimeVideo,国际媒体",
-    "RULE-SET,HBO,国际媒体",
-    "GEOSITE,onedrive,微软服务",
-    "GEOSITE,github,国际媒体",
-    "GEOSITE,microsoft,微软服务",
-    "GEOSITE,gfw,国外网站",
-    "GEOSITE,cn,DIRECT",
-    "GEOIP,lan,DIRECT",
-    "GEOIP,CN,DIRECT",
-    "MATCH,兜底分流"
-  ];
-
+  })
   // 返回修改后的配置
   return config;
 }
