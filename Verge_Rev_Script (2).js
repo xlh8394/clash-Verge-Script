@@ -233,7 +233,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "⚙️ 节点选择",
       "type": "select",
-      "proxies": ["♻️ 延迟选优", "🚑 故障转移"],
+      "proxies": ["♻️ 延迟选优"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
     },
@@ -247,16 +247,9 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "🚑 故障转移",
-      "type": "fallback",
-      "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/ambulance.svg"
-    },
-    {
-      ...groupBaseOption,
       "name": "🌍 国外媒体",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🔗 全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/youtube.svg"
     },
@@ -274,7 +267,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "💵 Claude",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "🔗 全局直连", "♻️ 延迟选优", "🚑 故障转移"],
+      "proxies": ["⚙️ 节点选择", "🔗 全局直连", "♻️ 延迟选优"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/claude.svg"
     },
@@ -282,7 +275,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "🅿️ PikPak",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "🔗 全局直连", "♻️ 延迟选优", "🚑 故障转移"],
+      "proxies": ["⚙️ 节点选择", "🔗 全局直连", "♻️ 延迟选优"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg"
     },
@@ -290,7 +283,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "📲 电报消息",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🔗 全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg"
     },
@@ -298,7 +291,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "📢 谷歌服务",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🔗 全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg"
     },
@@ -306,7 +299,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "🍎 苹果服务",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "proxies": ["⚙️ 节点选择", "🔗 全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg"
     },
@@ -314,7 +307,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Ⓜ️ 微软服务",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "🔗 全局直连", "♻️ 延迟选优", "🚑 故障转移"],
+      "proxies": ["⚙️ 节点选择", "🔗 全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/microsoft.svg"
     },
@@ -329,7 +322,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "🔗 全局直连",
       "type": "select",
-      "proxies": ["DIRECT", "⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移"],
+      "proxies": ["DIRECT", "⚙️ 节点选择"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg"
     },
@@ -345,7 +338,7 @@ function main(config) {
       "name": "🐬 自定义直连",
       "type": "select",
       "include-all": true,
-      "proxies": ["🔗 全局直连", "⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移"],
+      "proxies": ["🔗 全局直连", "⚙️ 节点选择"],
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/unknown.svg"
     },
     {
@@ -353,14 +346,14 @@ function main(config) {
       "name": "🐳 自定义代理",
       "type": "select",
       "include-all": true,
-      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "proxies": ["⚙️ 节点选择", "🔗 全局直连"],
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/openwrt.svg"
     },
     {
       ...groupBaseOption,
       "name": "🐟 漏网之鱼",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🚑 故障转移", "🔗 全局直连"],
+      "proxies": ["⚙️ 节点选择", "🔗 全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg"
     }
