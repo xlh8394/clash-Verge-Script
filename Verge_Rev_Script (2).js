@@ -173,37 +173,37 @@ const ruleProviders = {
 // 规则
 const rules = [
   // 自定义规则
-  "DOMAIN-SUFFIX,googleapis.cn,⚙️ 节点选择", // Google服务
-  "DOMAIN-SUFFIX,gstatic.com,⚙️ 节点选择", // Google静态资源
-  "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,⚙️ 节点选择", // Google Play下载服务
-  "DOMAIN-SUFFIX,github.io,⚙️ 节点选择", // Github Pages
-  "DOMAIN,v2rayse.com,⚙️ 节点选择", // V2rayse节点工具
+  "DOMAIN-SUFFIX,googleapis.cn, 节点选择", // Google服务
+  "DOMAIN-SUFFIX,gstatic.com, 节点选择", // Google静态资源
+  "DOMAIN-SUFFIX,xn--ngstr-lra8j.com, 节点选择", // Google Play下载服务
+  "DOMAIN-SUFFIX,github.io, 节点选择", // Github Pages
+  "DOMAIN,v2rayse.com, 节点选择", // V2rayse节点工具
   // MetaCubeX 规则集
-  "RULE-SET,openai,💸 ChatGPT-Gemini-XAI-Perplexity",
-  "RULE-SET,pikpak,🅿️ PikPak",
-  "RULE-SET,anthropic,💵 Claude",
-  "RULE-SET,google-gemini,💸 ChatGPT-Gemini-XAI-Perplexity",
-  "RULE-SET,xai,💸 ChatGPT-Gemini-XAI-Perplexity",
-  "RULE-SET,perplexity,💸 ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,openai, ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,pikpak, PikPak",
+  "RULE-SET,anthropic, Claude",
+  "RULE-SET,google-gemini, ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,xai, ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,perplexity, ChatGPT-Gemini-XAI-Perplexity",
   // Loyalsoldier 规则集
-  "RULE-SET,applications,🔗 全局直连",
-  "RULE-SET,private,🔗 全局直连",
-  "RULE-SET,reject,🥰 广告过滤",
-  "RULE-SET,microsoft,Ⓜ️ 微软服务",
-  "RULE-SET,icloud,🍎 苹果服务",
-  "RULE-SET,apple,🍎 苹果服务",
-  "RULE-SET,google,📢 谷歌服务",
-  "RULE-SET,proxy,⚙️ 节点选择",
-  "RULE-SET,gfw,⚙️ 节点选择",
-  "RULE-SET,tld-not-cn,⚙️ 节点选择",
-  "RULE-SET,direct,🔗 全局直连",
-  "RULE-SET,lancidr,🔗 全局直连,no-resolve",
-  "RULE-SET,cncidr,🔗 全局直连,no-resolve",
-  "RULE-SET,telegramcidr,📲 电报消息,no-resolve",
+  "RULE-SET,applications, 全局直连",
+  "RULE-SET,private, 全局直连",
+  "RULE-SET,reject, 广告过滤",
+  "RULE-SET,microsoft, 微软服务",
+  "RULE-SET,icloud, 苹果服务",
+  "RULE-SET,apple, 苹果服务",
+  "RULE-SET,google, 谷歌服务",
+  "RULE-SET,proxy, 节点选择",
+  "RULE-SET,gfw, 节点选择",
+  "RULE-SET,tld-not-cn, 节点选择",
+  "RULE-SET,direct, 全局直连",
+  "RULE-SET,lancidr, 全局直连,no-resolve",
+  "RULE-SET,cncidr, 全局直连,no-resolve",
+  "RULE-SET,telegramcidr, 电报消息,no-resolve",
   // 其他规则
-  "GEOIP,LAN,🔗 全局直连,no-resolve",
-  "GEOIP,CN,🔗 全局直连,no-resolve",
-  "MATCH,🐟 漏网之鱼"
+  "GEOIP,LAN, 全局直连,no-resolve",
+  "GEOIP,CN, 全局直连,no-resolve",
+  "MATCH, 漏网之鱼"
 ];
 // 代理组通用配置
 const groupBaseOption = {
@@ -231,15 +231,15 @@ function main(config) {
   config["proxy-groups"] = [
     {
       ...groupBaseOption,
-      "name": "⚙️ 节点选择",
+      "name": "节点选择",
       "type": "select",
-      "proxies": ["♻️ 延迟选优"],
+      "proxies": ["延迟选优"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
     },
     {
       ...groupBaseOption,
-      "name": "♻️ 延迟选优",
+      "name": "延迟选优",
       "type": "url-test",
       "tolerance": 50,
       "include-all": true,
@@ -247,9 +247,9 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "🌍 国外媒体",
+      "name": "国外媒体",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🔗 全局直连"],
+      "proxies": ["节点选择", "延迟选优", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png"
     },
@@ -257,7 +257,7 @@ function main(config) {
       ...groupBaseOption,
       // "url": "https://chatgpt.com",
       // "expected-status": "200",
-      "name": "💸 ChatGPT-Gemini-XAI-Perplexity",
+      "name": "ChatGPT-Gemini-XAI-Perplexity",
       "type": "select",
       "include-all": true,
       "exclude-filter": "(?i)港|hk|hongkong|hong kong|俄|ru|russia|澳|macao",
@@ -265,95 +265,95 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "💵 Claude",
+      "name": "Claude",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "🔗 全局直连", "♻️ 延迟选优"],
+      "proxies": ["节点选择", "全局直连", "延迟选优"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/claude.svg"
     },
     {
       ...groupBaseOption,
-      "name": "🅿️ PikPak",
+      "name": "PikPak",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "🔗 全局直连", "♻️ 延迟选优"],
+      "proxies": ["节点选择", "全局直连", "延迟选优"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg"
     },
     {
       ...groupBaseOption,
-      "name": "📲 电报消息",
+      "name": "电报消息",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🔗 全局直连"],
+      "proxies": ["节点选择", "延迟选优", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg"
     },
     {
       ...groupBaseOption,
-      "name": "📢 谷歌服务",
+      "name": "谷歌服务",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🔗 全局直连"],
+      "proxies": ["节点选择", "延迟选优", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg"
     },
     {
       ...groupBaseOption,
-      "name": "🍎 苹果服务",
+      "name": "苹果服务",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "🔗 全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg"
     },
     {
       ...groupBaseOption,
-      "name": "Ⓜ️ 微软服务",
+      "name": "微软服务",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "🔗 全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/microsoft.svg"
     },
     {
       ...groupBaseOption,
-      "name": "🥰 广告过滤",
+      "name": "广告过滤",
       "type": "select",
       "proxies": ["REJECT", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/adguard.png"
     },
     {
       ...groupBaseOption,
-      "name": "🔗 全局直连",
+      "name": "全局直连",
       "type": "select",
-      "proxies": ["DIRECT", "⚙️ 节点选择"],
+      "proxies": ["DIRECT", "节点选择"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg"
     },
     {
       ...groupBaseOption,
-      "name": "❌ 全局拦截",
+      "name": "全局拦截",
       "type": "select",
       "proxies": ["REJECT", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/block.svg"
     },
     {
       ...groupBaseOption,
-      "name": "🐬 自定义直连",
+      "name": "自定义直连",
       "type": "select",
       "include-all": true,
-      "proxies": ["🔗 全局直连", "⚙️ 节点选择"],
+      "proxies": ["全局直连", "节点选择"],
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/unknown.svg"
     },
     {
       ...groupBaseOption,
-      "name": "🐳 自定义代理",
+      "name": "自定义代理",
       "type": "select",
       "include-all": true,
-      "proxies": ["⚙️ 节点选择", "🔗 全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/openwrt.svg"
     },
     {
       ...groupBaseOption,
-      "name": "🐟 漏网之鱼",
+      "name": "漏网之鱼",
       "type": "select",
-      "proxies": ["⚙️ 节点选择", "🔗 全局直连"],
+      "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg"
     }
