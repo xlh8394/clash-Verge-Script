@@ -251,7 +251,7 @@ function main(config) {
       "type": "select",
       "proxies": ["⚙️ 节点选择", "♻️ 延迟选优", "🔗 全局直连"],
       "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Streaming.png"
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png"
     },
     {
       ...groupBaseOption,
