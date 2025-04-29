@@ -243,7 +243,7 @@ function main(config) {
       "type": "url-test",
       "tolerance": 50,
       "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Speedtest.png"
     },
     {
       ...groupBaseOption,
@@ -261,7 +261,7 @@ function main(config) {
       "type": "select",
       "include-all": true,
       "exclude-filter": "(?i)港|hk|hongkong|hong kong|俄|ru|russia|澳|macao",
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg"
+      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png"
     },
     {
       ...groupBaseOption,
@@ -293,7 +293,7 @@ function main(config) {
       "type": "select",
       "proxies": ["节点选择", "延迟选优", "全局直连"],
       "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg"
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png"
     },
     {
       ...groupBaseOption,
@@ -301,7 +301,7 @@ function main(config) {
       "type": "select",
       "proxies": ["节点选择", "全局直连"],
       "include-all": true,
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg"
+      "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png"
     },
     {
       ...groupBaseOption,
