@@ -261,7 +261,7 @@ function main(config) {
       "type": "select",
       "include-all": true,
       "exclude-filter": "(?i)港|hk|hongkong|hong kong|俄|ru|russia|澳|macao",
-      "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png"
+      "icon": "https://github.com/shindgewongxj/WHATSINStash/raw/main/icon/anthropic.png"
     },
     {
       ...groupBaseOption,
