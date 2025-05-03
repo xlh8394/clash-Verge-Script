@@ -173,11 +173,11 @@ const rules = [
   "DOMAIN-SUFFIX,github.io, 节点选择", // Github Pages
   "DOMAIN,v2rayse.com, 节点选择", // V2rayse节点工具
   // MetaCubeX 规则集
-  "RULE-SET,openai, ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,openai, AI",
   "RULE-SET,anthropic, Claude",
-  "RULE-SET,google-gemini, ChatGPT-Gemini-XAI-Perplexity",
-  "RULE-SET,xai, ChatGPT-Gemini-XAI-Perplexity",
-  "RULE-SET,perplexity, ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,google-gemini, AI",
+  "RULE-SET,xai, AI",
+  "RULE-SET,perplexity, AI",
   // Loyalsoldier 规则集
   "RULE-SET,applications, 全局直连",
   "RULE-SET,private, 全局直连",
@@ -250,7 +250,7 @@ function main(config) {
       ...groupBaseOption,
       // "url": "https://chatgpt.com",
       // "expected-status": "200",
-      "name": "ChatGPT-Gemini-XAI-Perplexity",
+      "name": "AI",
       "type": "select",
       "include-all": true,
       "exclude-filter": "(?i)港|hk|hongkong|hong kong|俄|ru|russia|澳|macao",
