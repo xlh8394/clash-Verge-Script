@@ -174,7 +174,6 @@ const rules = [
   "DOMAIN,v2rayse.com, 节点选择", // V2rayse节点工具
   // MetaCubeX 规则集
   "RULE-SET,openai, AI",
-  "RULE-SET,anthropic, Claude",
   "RULE-SET,google-gemini, AI",
   "RULE-SET,xai, AI",
   "RULE-SET,perplexity, AI",
@@ -226,7 +225,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "节点选择",
       "type": "select",
-      "proxies": ["延迟选优"],
+      "proxies": ["延迟选优", "香港节点", "台湾节点", "狮城节点", "日本节点", "美国节点"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
     },
@@ -242,7 +241,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "国外媒体",
       "type": "select",
-      "proxies": ["节点选择", "延迟选优", "全局直连"],
+      "proxies": ["节点选择", "延迟选优", "香港节点", "台湾节点", "狮城节点", "日本节点", "美国节点"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png"
     },
@@ -258,17 +257,9 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "Claude",
-      "type": "select",
-      "proxies": ["节点选择", "全局直连", "延迟选优"],
-      "include-all": true,
-      "icon": "data:image/png;base64,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"
-    },
-    {
-      ...groupBaseOption,
       "name": "电报消息",
       "type": "select",
-      "proxies": ["节点选择", "延迟选优", "全局直连"],
+      "proxies": ["节点选择", "延迟选优", "香港节点", "台湾节点", "狮城节点", "日本节点", "美国节点"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg"
     },
@@ -276,7 +267,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "谷歌服务",
       "type": "select",
-      "proxies": ["节点选择", "延迟选优", "全局直连"],
+      "proxies": ["节点选择", "延迟选优", "香港节点", "台湾节点", "狮城节点", "日本节点", "美国节点"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png"
     },
@@ -341,6 +332,52 @@ function main(config) {
       "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg"
+    },
+    // 地区分组
+    {
+      ...groupBaseOption,
+      "name": "香港节点",
+      "type": "url-test",
+      "tolerance": 0,
+      "include-all": true,
+      "filter": "(?i)🇭🇰|香港|(\b(HK|Hong)\b)",
+      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "美国节点",
+      "type": "url-test",
+      "tolerance": 0,
+      "include-all": true,
+      "filter": "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)",
+      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "狮城节点",
+      "type": "url-test",
+      "tolerance": 0,
+      "include-all": true,
+      "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)",
+      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "日本节点",
+      "type": "url-test",
+      "tolerance": 0,
+      "include-all": true,
+      "filter": "(?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)",
+      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "台湾节点",
+      "type": "url-test",
+      "tolerance": 0,
+      "include-all": true,
+      "filter": "(?i)🇨🇳|🇹🇼|台湾|Taipei|(\b(TW|Tai|Taiwan)\b)",
+      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png"
     }
   ];
 
