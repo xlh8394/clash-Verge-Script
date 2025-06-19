@@ -49,12 +49,6 @@ const ruleProviderCommon = {
 };
 // 规则集配置
 const ruleProviders = {
-  "reject": {
-    ...ruleProviderCommon,
-    "behavior": "domain",
-    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt",
-    "path": "./ruleset/loyalsoldier/reject.yaml"
-  },
   "icloud": {
     ...ruleProviderCommon,
     "behavior": "domain",
@@ -180,7 +174,6 @@ const rules = [
   // Loyalsoldier 规则集
   "RULE-SET,applications, 全局直连",
   "RULE-SET,private, 全局直连",
-  "RULE-SET,reject, 广告过滤",
   "RULE-SET,microsoft, 微软服务",
   "RULE-SET,icloud, 苹果服务",
   "RULE-SET,apple, 苹果服务",
@@ -286,13 +279,6 @@ function main(config) {
       "proxies": ["节点选择", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/microsoft.svg"
-    },
-    {
-      ...groupBaseOption,
-      "name": "广告过滤",
-      "type": "select",
-      "proxies": ["REJECT", "DIRECT"],
-      "icon": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/adguard.png"
     },
     {
       ...groupBaseOption,
