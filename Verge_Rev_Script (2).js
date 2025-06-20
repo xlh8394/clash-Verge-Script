@@ -152,6 +152,12 @@ const ruleProviders = {
     "url": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/Netflix.txt",
     "path": "./ruleset/xiaolin-007/Netflix.yaml"
   },
+  "Emby": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://raw.githubusercontent.com/xlh8394/clashemby/refs/heads/main/Emby.yaml", 
+    "path": "./ruleset/xlh8394/Emby.yaml"
+  },
   "Spotify": {
     ...ruleProviderCommon,
     "behavior": "classical",
@@ -176,6 +182,7 @@ const rules = [
   "RULE-SET,YouTube,YouTube",
   "RULE-SET,Netflix,Netflix",
   "RULE-SET,bahamut,动画疯",
+  "RULE-SET,Emby, Emby", 
   "RULE-SET,Spotify,Spotify",
   "RULE-SET,google,谷歌服务",
   "RULE-SET,proxy,节点选择",
@@ -318,6 +325,14 @@ function main(config) {
       "type": "select",
       "proxies": ["REJECT", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/bug.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "Emby",
+      "type": "select",
+      "proxies": ["节点选择", "延迟选优", "香港节点", "台湾节点", "狮城节点", "日本节点", "美国节点", "全局直连"], 
+      "include-all": true,
+      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png" 
     },
     {
       ...groupBaseOption,
