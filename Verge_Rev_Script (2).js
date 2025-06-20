@@ -134,7 +134,7 @@ const ruleProviders = {
     "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt",
     "path": "./ruleset/loyalsoldier/applications.yaml"
   },
-  "bahamut": {
+  "巴哈姆特": {
     ...ruleProviderCommon,
     "behavior": "classical",
     "url": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/Bahamut.txt",
@@ -181,7 +181,7 @@ const rules = [
   "RULE-SET,apple,苹果服务",
   "RULE-SET,YouTube,YouTube",
   "RULE-SET,Netflix,Netflix",
-  "RULE-SET,bahamut,动画疯",
+  "RULE-SET,巴哈姆特,巴哈姆特",
   "RULE-SET,Emby, Emby", 
   "RULE-SET,Spotify,Spotify",
   "RULE-SET,google,谷歌服务",
@@ -304,12 +304,12 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "动画疯",
+      "name": "巴哈姆特",
       "type": "select",
       "proxies": ["节点选择"],
       "include-all": true,
       "filter": "(?i)台|tw|TW",
-      "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/bahamut.svg"
+      "icon": "https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Bahamut.png"
     },
     {
       ...groupBaseOption,
