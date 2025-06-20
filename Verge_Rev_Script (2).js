@@ -372,7 +372,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "新加坡节点",
+      "name": "狮城节点",
       "type": "url-test",
       "tolerance": 0,
       "include-all": true,
