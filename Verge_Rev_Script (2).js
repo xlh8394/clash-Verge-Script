@@ -220,6 +220,18 @@ function main(config) {
   // 覆盖原配置中DNS配置
   config["dns"] = dnsConfig;
 
+ // 添加外部节点提供者
+  config["proxy-providers"] = {
+      "零散节点": {
+      "type": "file",
+      "health-check": {
+      "enable": true,
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": 300
+    },
+      "path": "./jiedian.yaml"
+    }
+    },
   // 覆盖原配置中的代理组
   config["proxy-groups"] = [
     {
