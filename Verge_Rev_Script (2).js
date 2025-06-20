@@ -341,10 +341,10 @@ function main(config) {
       "proxies": ["节点选择", "延迟选优", "故障转移","全局直连", "香港节点", "台湾节点", "狮城节点", "日本节点", "美国节点"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg"
-    }
- // 地区分组
+    },
+    // 地区分组
     {
-      ...groupBaseOption,
+     ...groupBaseOption,
       "name": "香港节点",
       "type": "url-test",
       "tolerance": 0,
