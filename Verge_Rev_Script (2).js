@@ -313,6 +313,14 @@ function main(config) {
     },
     {
       ...groupBaseOption,
+      "name": "Emby",
+      "type": "select",
+      "proxies": ["节点选择", "延迟选优", "香港节点", "台湾节点", "狮城节点", "日本节点", "美国节点", "全局直连"], 
+      "include-all": true,
+      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png" 
+    },
+    {
+      ...groupBaseOption,
       "name": "Spotify",
       "type": "select",
       "proxies": ["节点选择", "全局直连", "香港节点", "台湾节点", "狮城节点", "日本节点", "美国节点"],
@@ -325,14 +333,6 @@ function main(config) {
       "type": "select",
       "proxies": ["REJECT", "DIRECT"],
       "icon": "https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/adguard.png"
-    },
-    {
-      ...groupBaseOption,
-      "name": "Emby",
-      "type": "select",
-      "proxies": ["节点选择", "延迟选优", "香港节点", "台湾节点", "狮城节点", "日本节点", "美国节点", "全局直连"], 
-      "include-all": true,
-      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png" 
     },
     {
       ...groupBaseOption,
